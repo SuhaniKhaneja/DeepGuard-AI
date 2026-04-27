@@ -1,99 +1,54 @@
 # 🧠 Deepfake Detection using CNN, DenseNet & EfficientNet
 
-## 🚀 Overview
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-DeepLearning-orange)
+![Status](https://img.shields.io/badge/Status-Completed-success)
 
-This project focuses on detecting deepfake images using deep learning techniques. Multiple models were implemented and compared to determine the most effective approach.
+---
+
+## 🚀 Overview
+Deepfake detection is a critical problem in modern AI.  
+This project compares multiple deep learning models to identify fake vs real images with high accuracy.
 
 ---
 
 ## 🏗️ Models Used
-
-* Custom CNN (Baseline)
-* DenseNet121 (Best Performance)
-* EfficientNetB0 (Efficient Alternative)
-
----
-
-## 📊 Model Comparison
-
-![Model Comparison](assets/model_comparison.png)
-
-DenseNet121 outperformed other models across all evaluation metrics.
+- 🧩 **Custom CNN** – Baseline model  
+- 🧠 **DenseNet121** – Best performing model  
+- ⚡ **EfficientNetB0** – Lightweight alternative  
 
 ---
 
-## 📈 Training Performance
+## 📊 Results
 
-### DenseNet121
+### 🔹 Model Performance Comparison
+![Performance](performance.png)
 
-![DenseNet Training](assets/densenet_training.png)
+### 🔹 Confusion Matrix Comparison
+![Confusion](confusion.png)
 
-### EfficientNetB0
-
-![EfficientNet Training](assets/efficientnet_training.png)
-
----
-
-## 📊 Evaluation Results
-
-### DenseNet121 Results
-
-![DenseNet Results](assets/densenet_results.png)
-
-### EfficientNetB0 Results
-
-![EfficientNet Results](assets/efficientnet_results.png)
+📌 **Key Result:**  
+DenseNet121 achieved the highest accuracy (~93%) and showed the lowest misclassification rate.
 
 ---
 
-## 🔬 Custom CNN (Baseline)
+## 💻 Demo / Output
+![UI](ui.png)
 
-A custom CNN was implemented as a baseline model. It showed signs of overfitting, highlighting the advantage of transfer learning approaches.
-
-![CNN Training](assets/cnn_training.png)
-
----
-
-## 🖥️ Web Interface
-
-![UI](assets/ui_prediction.png)
-
-A user interface was developed to demonstrate deepfake detection. Users can upload an image and receive predictions with confidence scores.
+Users can upload an image and instantly get:
+- Prediction (Real / Fake)
+- Confidence Score
 
 ---
 
 ## ⚙️ Tech Stack
-
-* Python
-* TensorFlow / Keras
-* OpenCV
-* Matplotlib
+- Python  
+- TensorFlow / Keras  
+- OpenCV  
+- Matplotlib  
 
 ---
 
 ## 📦 Installation
-
 ```bash
 pip install -r requirements.txt
-```
-
----
-
-## 📌 Key Insights
-
-* DenseNet121 achieved highest accuracy (~93%)
-* Transfer learning outperformed custom CNN
-* Model comparison helped identify best architecture
-
----
-
-## 🎯 Future Work
-
-* Add real-time deployment
-* Extend to video deepfake detection
-
----
-
-## 👩‍💻 Author
-
-Suhani Khaneja
