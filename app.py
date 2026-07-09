@@ -92,8 +92,7 @@ with st.sidebar:
     c2.metric("ROC-AUC",f"{m['roc_auc']:.4f}")
     c1.metric("Params",m["params"]); c2.metric("Speed",m["speed"])
     st.divider()
-    st.caption("Suhani · E23CSEU1702
-Bennett University · CSET431 2024–25")
+   st.caption("Suhani · E23CSEU1702\nBennett University · CSET431 2024–25")
 
 # ── Header ────────────────────────────────────────────────────────────────
 st.markdown('''<div style="text-align:center;padding:2rem 1rem 1rem">
