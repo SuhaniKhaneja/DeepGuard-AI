@@ -185,4 +185,20 @@ with tab2:
 
 # ── Tab 3 ─────────────────────────────────────────────────────────────────
 with tab3:
+    st.markdown("""
+## About
+
+DeepGuard AI — Deepfake detection using **DenseNet121** transfer learning on the RVF10K dataset.
+
+**Author:** Suhani · E23CSEU1702 · Bennett University · CSET431 2024–25
+
+**Mentor:** Mr. Sunny Arora
+
+**Stack:** TensorFlow · Streamlit · OpenCV · Grad-CAM · RVF10K Dataset
+""")
+    st.markdown("""
+<div style="text-align:center;padding:1.5rem;font-family:monospace;font-size:0.65rem;color:#4a5568;border-top:1px solid #1e2d4a;margin-top:2rem">
+Built with ❤️ by Suhani · Bennett University · CSET431 2024–25
+</div>
+""", unsafe_allow_html=True)
  
