@@ -24,8 +24,7 @@ except ImportError:
     TF_AVAILABLE = False
 
 MODEL_PATHS = {
-    "DenseNet121":   "models/densenet121_deepfake.h5",
-    "EfficientNetB0":"models/efficientnetb0_deepfake.h5",
+    "DenseNet121": "models/best_densenet_phase1.keras",
 }
 
 @st.cache_resource(show_spinner=False)
@@ -73,8 +72,14 @@ def gradcam(model, pil_img):
     return heatmap, np.uint8(img_r*0.55 + jet*0.45)
 
 MODEL_METRICS = {
-    "DenseNet121":   {"accuracy":0.9621,"roc_auc":0.9887,"precision":0.9638,"recall":0.9604,"params":"7.0M","speed":"38ms"},
-    "EfficientNetB0":{"accuracy":0.9543,"roc_auc":0.9856,"precision":0.9567,"recall":0.9519,"params":"5.3M","speed":"22ms"},
+    "DenseNet121": {
+        "accuracy": 0.9621,
+        "roc_auc": 0.9887,
+        "precision": 0.9638,
+        "recall": 0.9604,
+        "params": "7.0M",
+        "speed": "38ms"
+    }
 }
 
 # ── Sidebar ───────────────────────────────────────────────────────────────
@@ -82,7 +87,7 @@ with st.sidebar:
     st.markdown("""<div style='font-family:monospace;font-size:1.3rem;font-weight:800;color:#00d4ff'>🔍 DeepGuard AI</div>""", unsafe_allow_html=True)
     st.caption("Deepfake Detection System")
     st.divider()
-    model_choice = st.selectbox("Detection Model",["DenseNet121","EfficientNetB0"])
+    model_choice = st.selectbox("Detection Model",["DenseNet121"])
     threshold    = st.slider("Confidence Threshold", 0.30, 0.90, 0.50, 0.05)
     show_gradcam = st.toggle("Show Grad-CAM", value=True)
     st.divider()
@@ -92,13 +97,16 @@ with st.sidebar:
     c2.metric("ROC-AUC",f"{m['roc_auc']:.4f}")
     c1.metric("Params",m["params"]); c2.metric("Speed",m["speed"])
     st.divider()
-   st.caption("Suhani · E23CSEU1702\nBennett University · CSET431 2024–25")
+    st.caption(
+        "Suhani · E23CSEU1702\n"
+        "Bennett University · CSET431 2024–25"
+    )
 
 # ── Header ────────────────────────────────────────────────────────────────
 st.markdown('''<div style="text-align:center;padding:2rem 1rem 1rem">
     <div style="font-size:0.65rem;letter-spacing:3px;color:#00d4ff;font-family:monospace">AI RESEARCH PROJECT</div>
     <h1 style="font-size:3rem;font-weight:800;letter-spacing:-2px;margin:0.3rem 0">DeepGuard <span style="color:#00d4ff">AI</span></h1>
-    <p style="color:#8896b3;font-family:monospace;font-size:0.72rem">DenseNet121 + EfficientNetB0 · Transfer Learning · Grad-CAM</p>
+    <p style="color:#8896b3;font-family:monospace;font-size:0.72rem">DenseNet121· Transfer Learning · Grad-CAM</p>
 </div>''', unsafe_allow_html=True)
 
 tab1, tab2, tab3 = st.tabs(["🔬 Analyze Image","📊 Model Comparison","ℹ️ About"])
@@ -177,14 +185,4 @@ with tab2:
 
 # ── Tab 3 ─────────────────────────────────────────────────────────────────
 with tab3:
-    st.markdown("""## About  
-DeepGuard AI — Deepfake detection using **DenseNet121** and **EfficientNetB0** transfer learning on the RVF10K dataset.  
-  
-**Author:** Suhani · E23CSEU1702 · Bennett University · CSET431 2024-25  
-Mentor: Mr. Sunny Arora  
-  
-**Stack:** TensorFlow · Streamlit · OpenCV · Grad-CAM · RVF10K Dataset""")
-
-st.markdown('''<div style="text-align:center;padding:1.5rem;font-family:monospace;font-size:0.65rem;color:#4a5568;border-top:1px solid #1e2d4a;margin-top:2rem">
-Built with ❤️ by Suhani · Bennett University · CSET431 2024–25
-</div>''', unsafe_allow_html=True)
+ 
