@@ -1,0 +1,12 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Mono&display=swap');
+:root{--bg:#0a0e1a;--card:#131d35;--cyan:#00d4ff;--text:#e8eaf6;--muted:#8896b3;}
+.stApp{background-color:var(--bg)!important;font-family:"Space Mono",monospace;color:var(--text);}
+.stApp>header{display:none;}
+[data-testid="stSidebar"]{background:#0f1629!important;border-right:1px solid #1e2d4a;}
+h1,h2,h3{font-family:"Syne",sans-serif!important;color:var(--text)!important;}
+[data-testid="metric-container"]{background:var(--card);border:1px solid #1e2d4a;border-radius:8px;}
+[data-testid="stMetricValue"]{color:var(--cyan)!important;font-family:"Syne"!important;font-weight:700!important;}
+.stTabs [aria-selected="true"]{color:var(--cyan)!important;border-bottom:2px solid var(--cyan)!important;}
+.stProgress>div>div>div{background:linear-gradient(90deg,#00d4ff,#ff6b35)!important;}
+#MainMenu,footer{visibility:hidden;}
