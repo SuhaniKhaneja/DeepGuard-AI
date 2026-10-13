@@ -27,14 +27,20 @@ MODEL_PATHS = {
     "DenseNet121": "models/best_densenet_phase1.keras",
 }
 
+LOAD_ERRORS = {}
+
 @st.cache_resource(show_spinner=False)
 def load_models():
     loaded = {}
     for name, path in MODEL_PATHS.items():
         if TF_AVAILABLE and os.path.exists(path):
             try: loaded[name] = load_model(path, compile=False)
-            except: loaded[name] = None
-        else: loaded[name] = None
+            except Exception as e:
+                loaded[name] = None
+                LOAD_ERRORS[name] = f"{type(e).__name__}: {e}"
+        else:
+            loaded[name] = None
+            LOAD_ERRORS[name] = "TensorFlow unavailable" if not TF_AVAILABLE else f"weights not found at {path}"
     return loaded
 
 def preprocess(pil_img):
@@ -127,10 +133,10 @@ with tab1:
                 models = load_models()
                 model  = models.get(model_choice)
                 if model is None:
-                    label,conf,p_real,p_fake = "FAKE",0.923,0.077,0.923
-                    st.info("Demo mode — add .h5 weights to models/ for real predictions")
-                else:
-                    label,conf,p_real,p_fake = predict(model, image, threshold)
+                    st.error("Model could not be loaded, so no prediction was made. "
+                             + LOAD_ERRORS.get(model_choice, "unknown error"))
+                    st.stop()
+                label,conf,p_real,p_fake = predict(model, image, threshold)
             is_fake = label=="FAKE"
             c  = "#ff3d57" if is_fake else "#00e676"
             ic = "⚠️" if is_fake else "✅"
@@ -178,9 +184,10 @@ with tab2:
             st.metric("Precision",f"{m['precision']*100:.2f}%")
             st.metric("Recall",f"{m['recall']*100:.2f}%")
     import pandas as pd
-    df = pd.DataFrame({"DenseNet121":[0.9621,0.9887,0.9638,0.9604],
-                       "EfficientNetB0":[0.9543,0.9856,0.9567,0.9519]},
+    # EfficientNetB0 column removed: no weights/code for it in this repo, so it couldn't be verified.
+    df = pd.DataFrame({"DenseNet121":[0.9621,0.9887,0.9638,0.9604]},
                       index=["Accuracy","ROC-AUC","Precision","Recall"])
+    st.caption("Static values recorded from the training run on RVF10K; not recomputed in this app.")
     st.bar_chart(df, height=350)
 
 # ── Tab 3 ─────────────────────────────────────────────────────────────────
@@ -190,7 +197,7 @@ with tab3:
 
 DeepGuard AI — Deepfake detection using **DenseNet121** transfer learning on the RVF10K dataset.
 
-**Author:** Suhani · E23CSEU1702 · Bennett University · CSET431 2024–25
+**Author:** Suhani Khaneja · Bennett University · CSET431 2024–25
 
 **Mentor:** Mr. Sunny Arora
 

@@ -6,3 +6,5 @@ opencv-python-headless==4.10.0.84
 matplotlib==3.8.4
 pandas==2.2.2
 scikit-learn==1.5.1
+keras==3.15.1
+pyarrow==16.1.0
